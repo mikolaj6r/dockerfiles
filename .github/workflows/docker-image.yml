@@ -1,0 +1,16 @@
+name: Docker Image CI
+
+on:
+  schedule:
+    - cron:  '0 10 * * *'
+jobs:
+  get-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.REPO_SCOPED_TOKEN }}
+      - name: Fetch and deploy
+        run: |
+          chmod +x ./deno/build-and-deploy-deno.sh
+          ./deno/build-and-deploy-deno.sh
