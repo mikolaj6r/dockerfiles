@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        env:
+          GIT_TRACE: 1
+          GIT_CURL_VERBOSE: 1
       - name: Fetch and deploy
         run: |
           chmod +x ./deno/build-and-deploy-deno.sh
